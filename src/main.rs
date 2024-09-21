@@ -59,17 +59,14 @@ fn add_key(key_name: &str, email: &str) -> Result<(), Box<dyn std::error::Error>
 
     println!("🐙 OctoKey is generating a new SSH key...");
 
-    // Generate new SSH key
     Command::new("ssh-keygen")
         .args(&["-t", "ed25519", "-C", email, "-f", key_path.to_str().unwrap(), "-N", ""])
         .status()?;
 
-    // Add key to ssh-agent
     Command::new("ssh-add")
         .arg(key_path.to_str().unwrap())
         .status()?;
 
-    // Display public key for user to add to GitHub
     let public_key = fs::read_to_string(format!("{}.pub", key_path.to_str().unwrap()))?;
     println!("🎉 New SSH key generated! Add the following public key to your GitHub account:");
     println!("{}", public_key);
@@ -87,12 +84,10 @@ fn switch_key(key_name: &str) -> Result<(), Box<dyn std::error::Error>> {
 
     println!("🔄 OctoKey is switching SSH keys...");
 
-    // Remove all identities from ssh-agent
     Command::new("ssh-add")
         .arg("-D")
         .status()?;
 
-    // Add the selected key to ssh-agent
     Command::new("ssh-add")
         .arg(key_path.to_str().unwrap())
         .status()?;
