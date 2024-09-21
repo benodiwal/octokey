@@ -8,5 +8,9 @@ keywords = ["github", "ssh-keys", "manager"]
 license = "MIT"
 edition = "2021"
 
+[[bin]]
+name = "octokey"
+path = "src/main.rs"
+
 [dependencies]
 clap = "2.33"
