@@ -60,7 +60,7 @@ fn add_key(key_name: &str, email: &str) -> Result<(), Box<dyn std::error::Error>
     println!("🐙 OctoKey is generating a new SSH key...");
 
     Command::new("ssh-keygen")
-        .args(&["-t", "ed25519", "-C", email, "-f", key_path.to_str().unwrap(), "-N", ""])
+        .args(&["-t", "rsa", "-C", email, "-f", key_path.to_str().unwrap(), "-N", ""])
         .status()?;
 
     Command::new("ssh-add")
