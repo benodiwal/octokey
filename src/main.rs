@@ -2,7 +2,9 @@ use clap::{App, Arg, SubCommand};
 use std::fs;
 use std::io::{self, Write};
 use std::path::Path;
+use clipboard::{ClipboardContext, ClipboardProvider};
 use std::process::Command;
+
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let matches = App::new("OctoKey")
@@ -71,6 +73,10 @@ fn add_key(key_name: &str, email: &str) -> Result<(), Box<dyn std::error::Error>
     println!("🎉 New SSH key generated! Add the following public key to your GitHub account:");
     println!("{}", public_key);
 
+    let mut ctx: ClipboardContext = ClipboardProvider::new()?;
+    ctx.set_contents(public_key.clone())?;
+    
+    println!("key copied to clipboard");
     Ok(())
 }
 

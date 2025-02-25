@@ -16,3 +16,5 @@ path = "src/main.rs"
 
 [dependencies]
 clap = "2.33"
+clipboard = "0.5"
+
