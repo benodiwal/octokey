@@ -1,7 +1,7 @@
 [package]
 name = "octokey"
 description = "OctoKey is a tentacular tool to manage your GitHub SSH keys with ease and style!"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Sachin Beniwal <sachinbeniwal0101@gmail.com>"]
 readme = "README.md"
 repository = "https://github.com/benodiwal/octokey"
@@ -17,4 +17,3 @@ path = "src/main.rs"
 [dependencies]
 clap = "2.33"
 clipboard = "0.5"
-
